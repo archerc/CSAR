@@ -19,11 +19,14 @@ BUILD_DIR := ../build
 RESULT_DIR := $(BUILD_DIR)/
 CACHE_DIR := $(BUILD_DIR)/cache
 
-.PHONY: all build-static build-shared build-exe clean distclean
-all: build-static build-shared build-exe
+.PHONY: all build-static build-shared build-exe clean distclean run
+all: build-static build-shared build-exe test
 build-static: $(RESULT_DIR)$(STATIC_LIB)
 build-shared: $(RESULT_DIR)$(SHARED_LIB_VERSIONED)
-build-shared: $(RESULT_DIR)$(STATIC_EXE)
+build-exe: $(RESULT_DIR)$(STATIC_EXE)
+
+run: build-exe
+	$(RESULT_DIR)$(STATIC_EXE)
 
 clean:
 	$(RM) $(STATIC_OBJ)

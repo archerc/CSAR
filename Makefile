@@ -1,7 +1,7 @@
 include Makefile.common
 
-.PHONY: all build-static build-shared check clean distclean
-all: build-static build-shared check
+.PHONY: all build-static build-shared check clean distclean test
+all: build-static build-shared check test
 build-static:
 	$(MAKE) -C src build-static
 
@@ -11,6 +11,9 @@ build-shared:
 check: build-static build-shared
 	$(MAKE) -C test
 
+test:
+	.\build\csar.exe
+	
 clean:
 	$(MAKE) -C src clean
 	$(MAKE) -C test clean

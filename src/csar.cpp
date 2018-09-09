@@ -1,4 +1,4 @@
-#include <cstdio>
+#include <iostream>
 #include <exception>
 
 struct NotImplementedError: public std::exception
@@ -7,6 +7,6 @@ struct NotImplementedError: public std::exception
 
 int main(int argc, char const *argv[])
 {
-	throw NotImplementedError();
+	std::cout << "Hello world!" << std::endl;
 	return 0;
 }
