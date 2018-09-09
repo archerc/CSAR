@@ -5,3 +5,5 @@ CXXWARNFLAGS := -Wall -Wold-style-cast -Wundef -Wsign-compare -Wconversion -Wpoi
 CXXFLAGS := $(CXXWARNFLAGS) -g -O2
 
 prefix := /usr
+
+EXEFLAGS := -m64
