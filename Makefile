@@ -1,6 +1,7 @@
 include Makefile.common
 
-TEST_APP = test_emplace
+# TEST_APP = test_emplace
+TEST_APP = test_json
 
 .PHONY: all build-static build-shared check clean distclean test
 all: build-static build-shared check test

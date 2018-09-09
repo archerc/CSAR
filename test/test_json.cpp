@@ -1,5 +1,7 @@
 #include <iostream>
 #include <fstream>
+#include <iterator>
+#include <algorithm>
 #include <iomanip>
 #include "json.hpp"
 
@@ -70,6 +72,46 @@ void test_serialize()
 	std::cout << j_string << " == " << serialized_string << std::endl;
 }
 
+void test_conversion()
+{
+	// create a JSON value
+	json j = R"({"compact": true, "schema": 0})"_json;
+
+	// serialize to CBOR
+	std::vector<std::uint8_t> v_cbor = json::to_cbor(j);
+
+	// 0xA2, 0x67, 0x63, 0x6F, 0x6D, 0x70, 0x61, 0x63, 0x74, 0xF5, 0x66, 0x73, 0x63, 0x68, 0x65, 0x6D, 0x61, 0x00
+
+	// roundtrip
+	json j_from_cbor = json::from_cbor(v_cbor);
+
+	// serialize to MessagePack
+	std::vector<std::uint8_t> v_msgpack = json::to_msgpack(j);
+
+	// 0x82, 0xA7, 0x63, 0x6F, 0x6D, 0x70, 0x61, 0x63, 0x74, 0xC3, 0xA6, 0x73, 0x63, 0x68, 0x65, 0x6D, 0x61, 0x00
+
+	// roundtrip
+	json j_from_msgpack = json::from_msgpack(v_msgpack);
+
+	// serialize to UBJSON
+	std::vector<std::uint8_t> v_ubjson = json::to_ubjson(j);
+
+	// 0x7B, 0x69, 0x07, 0x63, 0x6F, 0x6D, 0x70, 0x61, 0x63, 0x74, 0x54, 0x69, 0x06, 0x73, 0x63, 0x68, 0x65, 0x6D, 0x61, 0x69, 0x00, 0x7D
+
+	// roundtrip
+	json j_from_ubjson = json::from_ubjson(v_ubjson);
+	std::ofstream file("output.ubj");
+	std::ostream_iterator<std::uint8_t> iterator(file);
+	std::copy(v_ubjson.begin(), v_ubjson.end(), iterator);
+	std::cout << "output.ubj written" << std::endl;
+
+	std::ifstream infile("output.ubj");
+	std::istream_iterator<std::uint8_t> begin(infile), end;
+	std::copy(begin, end, v_ubjson.begin());
+	std::cout << "output.ubj read: " << std::endl;
+	std::cout << json::from_ubjson(v_ubjson) << std::endl;
+}
+
 void test_io()
 {
 	// read a JSON file
@@ -87,5 +129,6 @@ int main(int argc, char const *argv[])
 	test_construct();
 	test_serialize();
 	test_io();
+	test_conversion();
 	return 0;
 }

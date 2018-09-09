@@ -3,7 +3,7 @@ include ../Makefile.common
 SOURCES := $(wildcard *.cpp)
 OBJECTS := 
 
-EXEUTABLES := $(add-prefix $(BUILD_DIR)/,$(SOURCES:.cpp=.exe))
+EXEUTABLES := $(foreach f,$(SOURCES:.cpp=.exe),$(BUILD_DIR)/$(f))
 
 .PHONY: all build clean 
 all:  build
@@ -13,4 +13,5 @@ $(BUILD_DIR)/%.exe: %.o $(OBJECTS)
 	$(CXX) $(CXXFLAGS) -o $@ $^
 
 clean: 
+	$(RM) $(EXEUTABLES)
 
