@@ -1,5 +1,7 @@
 .static-dep
 .shared-dep
+*.json
+*.stackdump
 
 # Prerequisites
 *.d

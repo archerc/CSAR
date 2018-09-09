@@ -12,7 +12,7 @@ check: build-static build-shared
 	$(MAKE) -C test
 
 test:
-	.\build\test_json.exe
+	./build/test_json.exe
 	
 clean:
 	$(MAKE) -C src clean

@@ -16,7 +16,7 @@ LDLIBS :=
 STATIC_EXE := $(NAME).exe
 
 .PHONY: all build-static build-shared build-exe clean distclean run
-all: build-static build-shared build-exe test
+all: build-static build-shared build-exe 
 build-static: $(RESULT_DIR)$(STATIC_LIB)
 build-shared: $(RESULT_DIR)$(SHARED_LIB_VERSIONED)
 build-exe: $(RESULT_DIR)$(STATIC_EXE)

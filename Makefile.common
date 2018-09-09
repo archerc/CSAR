@@ -17,5 +17,3 @@ EXEFLAGS := -m64
 
 $(CACHE_DIR)/%.o : %.cpp
 
-$(BUILD_DIR)/%.exe: %.o 
-	$(CXX) $(CXXFLAGS) -o $@ $<
