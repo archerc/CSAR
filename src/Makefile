@@ -15,10 +15,6 @@ LDLIBS :=
 
 STATIC_EXE := $(NAME).exe
 
-BUILD_DIR := ../build
-RESULT_DIR := $(BUILD_DIR)/
-CACHE_DIR := $(BUILD_DIR)/cache
-
 .PHONY: all build-static build-shared build-exe clean distclean run
 all: build-static build-shared build-exe test
 build-static: $(RESULT_DIR)$(STATIC_LIB)
@@ -49,7 +45,5 @@ $(RESULT_DIR)$(STATIC_LIB): $(STATIC_OBJ)
 	mkdir -p $(BUILD_DIR)
 	$(AR) $(ARFLAGS) -o $@ $^
 
-
-$(CACHE_DIR)/%.o : %.cpp
 
 include ../Makefile.deps

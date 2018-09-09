@@ -1,9 +1,21 @@
 VERSION := 0.1.7
 OS ?= $(shell uname -s)
 
+INCLUDES := ../include
+CXXSTD := --std=c++11
 CXXWARNFLAGS := -Wall -Wold-style-cast -Wundef -Wsign-compare -Wconversion -Wpointer-arith -pedantic
-CXXFLAGS := $(CXXWARNFLAGS) -g -O2
+CXXFLAGS := $(CXXSTD) $(CXXWARNFLAGS) -g -O2 -I $(INCLUDES)
 
 prefix := /usr
 
+BUILD_DIR := ../build
+RESULT_DIR := $(BUILD_DIR)/
+CACHE_DIR := $(BUILD_DIR)/cache
+
 EXEFLAGS := -m64
+
+
+$(CACHE_DIR)/%.o : %.cpp
+
+$(BUILD_DIR)/%.exe: %.o 
+	$(CXX) $(CXXFLAGS) -o $@ $<

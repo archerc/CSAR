@@ -1,15 +1,11 @@
-SUBTARGETS_ORIG := $(patsubst %/,%,$(dir $(wildcard */Makefile)))
-SUBTARGETS_FILTER_OUT := flex_string
-SUBTARGETS := $(filter-out $(SUBTARGETS_FILTER_OUT),$(SUBTARGETS_ORIG))
-	
-SUBTARGETS_CLEAN := $(addsuffix -clean,$(SUBTARGETS))
+include ../Makefile.common
 
-.PHONY: all clean $(SUBTARGETS) $(SUBTARGETS_CLEAN)
-all: $(SUBTARGETS)
-clean: $(SUBTARGETS_CLEAN)
+SOURCES := $(wildcard *.cpp)
+OBJECTS := $(SOURCES:.cpp=.o)
+EXEUTABLES := $(SOURCES:.cpp=.exe)
 
-$(SUBTARGETS):
-	$(MAKE) -C $@
+.PHONY: all clean 
+all: $(RESULT_DIR)$(EXEUTABLES)
 
-$(SUBTARGETS_CLEAN):
-	$(MAKE) -C $(@:-clean=) clean
+clean: 
+
