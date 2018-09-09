@@ -1,12 +1,13 @@
 include ../Makefile.common
 
 SOURCES := $(wildcard *.cpp)
-OBJECTS = $(SOURCES:.cpp=.o)
+OBJECTS := 
 
-EXEUTABLES := $(SOURCES:.cpp=.exe)
+EXEUTABLES := $(add-prefix $(BUILD_DIR)/,$(SOURCES:.cpp=.exe))
 
-.PHONY: all clean 
-all: $(RESULT_DIR)$(EXEUTABLES)
+.PHONY: all build clean 
+all:  build
+build: $(EXEUTABLES)
 
 $(BUILD_DIR)/%.exe: %.o $(OBJECTS)
 	$(CXX) $(CXXFLAGS) -o $@ $^

@@ -1,5 +1,7 @@
 include Makefile.common
 
+TEST_APP = test_emplace
+
 .PHONY: all build-static build-shared check clean distclean test
 all: build-static build-shared check test
 build-static:
@@ -12,7 +14,7 @@ check: build-static build-shared
 	$(MAKE) -C test
 
 test:
-	./build/test_json.exe
+	./build/$(TEST_APP).exe
 	
 clean:
 	$(MAKE) -C src clean
