@@ -10,8 +10,8 @@ NAME := csar
 STATIC_LIB := lib$(NAME).a
 
 SHARED_LIB_VERSIONED := lib$(NAME).dll
-override LDFLAGS += --shared
-LDLIBS :=
+override LDFLAGS += --shared 
+LDLIBS := -lboost_program_options-mt
 
 STATIC_EXE := $(NAME).exe
 

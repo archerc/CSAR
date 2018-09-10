@@ -4,8 +4,11 @@ OS ?= $(shell uname -s)
 MSYSROOT := D:/Applications/msys64
 INCLUDES := -I ../include 
 INCLUDES += -I $(MSYSROOT)/mingw64/include
+# INCLUDES += -I $(MSYSROOT)/mingw64/include/c++/8.2.0
+LDFLAGS += -L"$(MSYSROOT)/mingw64/lib"
+
 CXXSTD := --std=c++14
-CXXWARNFLAGS := -Wall -Wold-style-cast -Wundef -Wsign-compare -Wconversion -Wpointer-arith -pedantic
+# CXXWARNFLAGS := -Wall -Wold-style-cast -Wundef -Wsign-compare -Wconversion -Wpointer-arith -pedantic
 CXXFLAGS := $(CXXSTD) $(CXXWARNFLAGS) -g -O2 $(INCLUDES)
 
 # prefix := /usr

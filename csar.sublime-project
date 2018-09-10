@@ -1,39 +1,47 @@
 {
-	"build_systems": [
+	"build_systems":
+	[
 		{
-			"name": "MS Build",
-			"cmd": ["C:\\Program Files (x86)\\MSBuild\\14.0\\Bin\\MSBuild.exe", "MSBuildMakefile.xml"],
-			"encoding": "gb2312"
+			"cmd":
+			[
+				"C:\\Program Files (x86)\\MSBuild\\14.0\\Bin\\MSBuild.exe",
+				"MSBuildMakefile.xml"
+			],
+			"encoding": "gb2312",
+			"name": "MS Build"
 		}
 	],
 	"folders":
 	[
 		{
 			"path": "."
+		},
+		{
+			"path": "D:\\Applications\\msys64\\mingw64\\include\\boost\\program_options"
 		}
 	],
-	"settings": 
+	"settings":
 	{
-		"env_file": 
-		{
-			"Windows": "%HOME%/Documents/myEnv.bat",
-			"Darwin": "~/Documents/myEnv.sh",
-			"Linux": "~/Documents/myEnv.sh"
-		},
 		"env":
 		{
-			"Windows": 
+			"Darwin":
+			{
+				"PATH": "$PATH:~/Documents/MyTool"
+			},
+			"Linux":
+			{
+				"PATH": "$PATH:~/Documents/MyTool"
+			},
+			"Windows":
 			{
 				"PATH": "%PATH%;C:\\Program Files (x86)\\MSBuild\\14.0\\Bin"
-			},
-			"Darwin": 
-			{
-				"PATH": "$PATH:~/Documents/MyTool"
-			},
-			"Linux": 
-			{
-				"PATH": "$PATH:~/Documents/MyTool"
 			}
+		},
+		"env_file":
+		{
+			"Darwin": "~/Documents/myEnv.sh",
+			"Linux": "~/Documents/myEnv.sh",
+			"Windows": "%HOME%/Documents/myEnv.bat"
 		}
 	}
 }
