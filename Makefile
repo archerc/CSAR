@@ -1,36 +1,41 @@
-include Makefile.common
+# Project: csar
+# Makefile created by Dev-C++ 5.11
 
-# TEST_APP = test_emplace
-TEST_APP = csar
+NAME     = csar.exe
+BUILDIR  = build
+SRCDIR 	 = src
+MSYS = D:/Applications/msys64
+MinGW64 = $(MSYS)/mingw64
+CPP = $(MinGW64)/bin/g++
+# CPP      = g++.exe
+# CC       = gcc.exe
+# WINDRES  = windres.exe
+# RM	   = rm -f
+OBJ      = src/csar.o test/test_emplace.o test/test_json.o
+LINKOBJ  = 
+LIBS     = -lboost_program_options-mt -L $(MinGW64)/lib
+INCS     = -I $(MinGW64)/include -I include
+CXXINCS  = $(INCS)
+CXXFLAGS = $(CXXINCS) --std=c++14
+CFLAGS   = $(INCS) 
+BIN 	 = $(BUILDIR)/$(NAME)
+SRC 	 = $(SRCDIR)/$(NAME:.exe=.cpp)
 
-.PHONY: all build-static build-shared check clean distclean test
-all: build-static check test
-build-static:
-	$(MAKE) -C src build-static
+.PHONY: all all-before all-after clean clean-custom
 
-build-shared:
-	$(MAKE) -C src build-shared
+all: all-before $(BIN) all-after
 
-check: build-static 
-	$(MAKE) -C test
+clean: clean-custom
+	${RM} $(OBJ) $(BIN)
 
-test:
-	
-clean:
-	$(MAKE) -C src clean
-	$(MAKE) -C test clean
+$(BIN): $(SRC)
+	$(CPP) -o $@ $< $(LINKOBJ) $(LIBS)
 
-distclean: clean
-	$(MAKE) -C src distclean
+src/csar.o: src/csar.cpp
+	$(CPP) -c src/csar.cpp -o src/csar.o $(CXXFLAGS)
 
-ifneq ($(OS),Windows)
-.PHONY: install install-static
-install:
-	$(MAKE) -C src install-static
-	$(MAKE) -C src install-shared
-	$(MAKE) -C include install
+test/test_emplace.o: test/test_emplace.cpp
+	$(CPP) -c test/test_emplace.cpp -o test/test_emplace.o $(CXXFLAGS)
 
-install-static:
-	$(MAKE) -C src install-static
-	$(MAKE) -C include install
-endif
+test/test_json.o: test/test_json.cpp
+	$(CPP) -c test/test_json.cpp -o test/test_json.o $(CXXFLAGS)
