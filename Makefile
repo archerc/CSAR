@@ -11,8 +11,9 @@ CPP = $(MinGW64)/bin/g++
 # CC       = gcc.exe
 # WINDRES  = windres.exe
 # RM	   = rm -f
-OBJ      = src/csar.o test/test_emplace.o test/test_json.o
-LINKOBJ  = 
+OBJ      = src/csar.o
+TESTOBJ  = test/test_emplace.o test/test_json.o
+LINKOBJ  = src/json.o
 LIBS     = -lboost_program_options-mt -L $(MinGW64)/lib
 INCS     = -I $(MinGW64)/include -I include
 CXXINCS  = $(INCS)
@@ -26,13 +27,13 @@ SRC 	 = $(SRCDIR)/$(NAME:.exe=.cpp)
 all: all-before $(BIN) all-after
 
 clean: clean-custom
-	${RM} $(OBJ) $(BIN)
+	${RM} $(OBJ) $(BIN) $(LINKOBJ)
 
-$(BIN): $(SRC)
-	$(CPP) -o $@ $< $(LINKOBJ) $(LIBS)
+$(BIN): $(OBJ) $(LINKOBJ) 
+	$(CPP) -o $@ $^  $(LIBS)
 
-src/csar.o: src/csar.cpp
-	$(CPP) -c src/csar.cpp -o src/csar.o $(CXXFLAGS)
+src/%.o: src/%.cpp
+	$(CPP) -o $@ -c $< $(CXXFLAGS)
 
 test/test_emplace.o: test/test_emplace.cpp
 	$(CPP) -c test/test_emplace.cpp -o test/test_emplace.o $(CXXFLAGS)

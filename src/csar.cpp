@@ -1,20 +1,16 @@
 #include <iostream>
-#include <exception>
 #include <boost/program_options.hpp>
-
-struct NotImplementedError: public std::exception
-{
-};
+#include "json.h"
 
 namespace po = boost::program_options;
 
 int main(int argc, char const *argv[])
 {
-	po::options_description desc("Arguments: ");
+	po::options_description desc("语法: csar <input-file> [options]");
 	desc.add_options()
-		("help", "produce help messages")
+		("help,h", "produce help messages")
 		("input-file", po::value< std::string >(), "input file path")
-		("output", po::value< std::string >(), "output file path")
+		("output-file", po::value< std::string >(), "output file path")
 		;
 	po::positional_options_description p;
 	p.add("input-file", -1);
@@ -25,13 +21,19 @@ int main(int argc, char const *argv[])
 	po::notify(vm);
 
 	if (vm.count("help")) {
-		std::cout << "Usage: options_description [options]\n";
 		std::cout << desc << std::endl;
-		return 0;
 	}
-	if (vm.count("output"))
+
+	if (vm.count("input-file"))
 	{
-	 	// std::cout << desc["output"].as<std::string>() << std::endl;
+		auto infile = vm["input-file"].as<std::string>();
+	 	std::cout << "Read from file: " << infile << std::endl;
+	 	auto task = loadjson(infile);
+	 	task();
 	} 
+	else
+	{
+		std::cout << desc << std::endl;
+	}
 	return 0;
 }
