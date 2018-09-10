@@ -2,6 +2,7 @@
 .shared-dep
 *.json
 *.stackdump
+*.sublime-workspace
 
 # Prerequisites
 *.d

@@ -2,7 +2,8 @@
 	"build_systems": [
 		{
 			"name": "MS Build",
-			"cmd": ["C:\\Program Files (x86)\\MSBuild\\14.0\\Bin\\MSBuild.exe", "MSBuildMakefile.xml"]
+			"cmd": ["C:\\Program Files (x86)\\MSBuild\\14.0\\Bin\\MSBuild.exe", "MSBuildMakefile.xml"],
+			"encoding": "gb2312"
 		}
 	],
 	"folders":
@@ -10,5 +11,29 @@
 		{
 			"path": "."
 		}
-	]
+	],
+	"settings": 
+	{
+		"env_file": 
+		{
+			"Windows": "%HOME%/Documents/myEnv.bat",
+			"Darwin": "~/Documents/myEnv.sh",
+			"Linux": "~/Documents/myEnv.sh"
+		},
+		"env":
+		{
+			"Windows": 
+			{
+				"PATH": "%PATH%;C:\\Program Files (x86)\\MSBuild\\14.0\\Bin"
+			},
+			"Darwin": 
+			{
+				"PATH": "$PATH:~/Documents/MyTool"
+			},
+			"Linux": 
+			{
+				"PATH": "$PATH:~/Documents/MyTool"
+			}
+		}
+	}
 }
