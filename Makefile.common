@@ -4,11 +4,11 @@ OS ?= $(shell uname -s)
 MSYSROOT := D:/Applications/msys64
 INCLUDES := -I ../include 
 INCLUDES += -I $(MSYSROOT)/mingw64/include
-CXXSTD := --std=c++11
+CXXSTD := --std=c++14
 CXXWARNFLAGS := -Wall -Wold-style-cast -Wundef -Wsign-compare -Wconversion -Wpointer-arith -pedantic
 CXXFLAGS := $(CXXSTD) $(CXXWARNFLAGS) -g -O2 $(INCLUDES)
 
-prefix := /usr
+# prefix := /usr
 
 BUILD_DIR := ../build
 RESULT_DIR := $(BUILD_DIR)/
