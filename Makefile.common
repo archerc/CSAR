@@ -1,10 +1,12 @@
 VERSION := 0.1.7
 OS ?= $(shell uname -s)
 
-INCLUDES := ../include
+MSYSROOT := D:/Applications/msys64
+INCLUDES := -I ../include 
+INCLUDES += -I $(MSYSROOT)/mingw64/include
 CXXSTD := --std=c++11
 CXXWARNFLAGS := -Wall -Wold-style-cast -Wundef -Wsign-compare -Wconversion -Wpointer-arith -pedantic
-CXXFLAGS := $(CXXSTD) $(CXXWARNFLAGS) -g -O2 -I $(INCLUDES)
+CXXFLAGS := $(CXXSTD) $(CXXWARNFLAGS) -g -O2 $(INCLUDES)
 
 prefix := /usr
 

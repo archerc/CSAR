@@ -1,5 +1,6 @@
 #include <iostream>
 #include <exception>
+#include <boost/program_options/cmdline.hpp>
 
 struct NotImplementedError: public std::exception
 {
