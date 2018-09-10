@@ -17,7 +17,8 @@ BUILD_DIR := ../build
 RESULT_DIR := $(BUILD_DIR)/
 CACHE_DIR := $(BUILD_DIR)/cache
 
-EXEFLAGS := -m64
+EXEFLAGS := $(LDFLAGS)
+EXEFLAGS += -m64
 
 
 $(CACHE_DIR)/%.o : %.cpp
