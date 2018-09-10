@@ -11,7 +11,7 @@ struct NotImplementedError: public std::exception
 int main(int argc, char const *argv[])
 {
 	using options_description = boost::program_options::options_description;
-	// options_description desc("Allowed options:");
+	options_description desc("Allowed options:");
 	std::cout << "Hello world!" << std::endl;
 	return 0;
 }

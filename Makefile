@@ -4,14 +4,14 @@ include Makefile.common
 TEST_APP = test_json
 
 .PHONY: all build-static build-shared check clean distclean test
-all: build-static build-shared check test
+all: build-static check test
 build-static:
 	$(MAKE) -C src build-static
 
 build-shared:
 	$(MAKE) -C src build-shared
 
-check: build-static build-shared
+check: build-static 
 	$(MAKE) -C test
 
 test:
