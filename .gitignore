@@ -1,6 +1,7 @@
 .static-dep
 .shared-dep
 *.json
+*.ubj
 *.stackdump
 *.sublime-workspace
 
